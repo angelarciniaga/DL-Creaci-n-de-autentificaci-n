@@ -1,6 +1,6 @@
 <template>
   <div class="container mt-5">
-    <h1>Login de Usuario</h1>
+    <h1>Registro de Usuario</h1>
     <div>
       <b-form @submit.prevent="login">
         <b-form-group
@@ -18,20 +18,33 @@
         </b-form-group>
 
         <b-form-group
-          id="input-group-2"
-          label="Clave: "
-          label-for="input-2"
+            id="input-group-2"
+            label="Nombre: "
+            label-for="input-2"
         >
-          <b-form-input
-            id="input-2"
-            v-model="form.clave"
-            type="password"
-            required
-            placeholder="Ingresa tu clave"
-          ></b-form-input>
+            <b-form-input
+                id="input-2"
+                v-model="form.name"
+                type="text"
+                required
+                placeholder="Ingresa nombre"
+            ></b-form-input>
+        </b-form-group>
+        <b-form-group
+            id="input-group-3"
+            label="Clave: "
+            label-for="input-3"
+        >
+            <b-form-input
+                id="input-3"
+                v-model="form.clave"
+                type="password"
+                required
+                placeholder="Ingresa tu clave"
+            ></b-form-input>
         </b-form-group>
 
-        <b-button type="submit" variant="primary">Ingresar</b-button>
+        <b-button type="submit" variant="primary">Registrar</b-button>
         <b-button type="reset" variant="danger">Reset</b-button>
       </b-form>
     </div>
@@ -47,7 +60,8 @@ export default {
     return {
       form: {
         email: '',
-        clave: ''
+        clave: '',
+        name: ''
       }
     }
   },
@@ -79,7 +93,7 @@ export default {
               this.errores(error)
             }else {
               this.errores(error);
-              this.$router.push('/registro');
+              
             }
           })
         
@@ -87,7 +101,7 @@ export default {
         console.log('No se puede conectar');
       }
     },
-    errores(error){
+     errores(error){
       this.$notify.error({
         title: 'Error',
         message: `${error.message}`
